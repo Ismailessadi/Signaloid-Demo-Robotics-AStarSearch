@@ -28,7 +28,7 @@
 #include <getopt.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <uncertain.h>
+#include <uxhw.h>
 
 extern char * optarg;
 extern int    opterr;
@@ -266,7 +266,7 @@ readFromCSVFile(Graph * const graph, const CommandLineArguments * const argument
 		if (arguments->heuristicStdCoeff > 0.0)
 		{
 			const double heuristicValue = graph->heuristicValues[i];
-			graph->heuristicValues[i] = libUncertainDoubleGaussDist(
+			graph->heuristicValues[i] = UxHwDoubleGaussDist(
 				heuristicValue,
 				arguments->heuristicStdCoeff * heuristicValue);
 		}
@@ -276,7 +276,7 @@ readFromCSVFile(Graph * const graph, const CommandLineArguments * const argument
 			for (size_t j = 0; j < arguments->numberOfNodes; j++)
 			{
 				const double edgeWeight = graph->adjacencyMatrix[i][j];
-				graph->adjacencyMatrix[i][j] = libUncertainDoubleGaussDist(
+				graph->adjacencyMatrix[i][j] = UxHwDoubleGaussDist(
 					edgeWeight,
 					arguments->edgeWeigthStdCoeff * edgeWeight);
 			}
